@@ -21,4 +21,4 @@ In particular, the app should:
   - Upon successful scan, the search query should be set to the scanned text
 - In order to refresh the data, the app should offer:
   - a swipe-2-refresh functionality
-  - and a periodic worker that requests the resources from above every 60 minutes
+  - and a worker that requests the resources from above every 60 minutes
