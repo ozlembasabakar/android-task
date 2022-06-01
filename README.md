@@ -1,7 +1,7 @@
 Hello dear Android dev prospect!
 
 This repository is supposed to act as a playground for your submission.
-Before getting started, please make sure to create a new branch (named like your GiThub username) on which you commit and push your code regularly.
+Before getting started, please make sure to create a new branch (named like your GitHub username) on which you commit and push your code regularly.
 
 Below, you will find the **Task** definition.
 If you stumble upon any problems or have questions regarding the task, feel free to send me a mail (<patrick.stens@vero.de>).
