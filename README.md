@@ -23,23 +23,28 @@ In particular, the app should:
   - a swipe-2-refresh functionality
   - and a worker that requests the resources from above every 60 minutes
 
-### Hints
-You can use the curl library to authenticate, for example: 
+### Authorization
 
-`curl --request POST \
+It's mandatory for your requests towers the API to be authorized. You can find the required request below:
+
+This is how it looks in `curl`:
+
+```bash
+curl --request POST \
   --url https://api.baubuddy.de/index.php/login \
   --header 'Authorization: Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz' \
   --header 'Content-Type: application/json' \
   --data '{
         "username":"365",
         "password":"1"
-}'`
+}'
+```
 
-The response will contain a json object, having the access token in json["oauth"]["access_token"]. For all subsequent calls this has to be added to the headers as Authorization: Bearer {access_token}.
+The response will contain a json object, having the access token in `json["oauth"]["access_token"]`. For all subsequent calls this has to be added to the request headers as `Authorization: Bearer {access_token}`.
 
-E.g.:
+A possible implementation in `Python` could be the following. You don't have to copy over this one, feel free to indivualize it or use a different network library.
 
-`
+```kotlin
 val client = OkHttpClient()
 val mediaType = MediaType.parse("application/json")
 val body = RequestBody.create(mediaType, "{\n        \"username\":\"365\",\n        \"password\":\"1\"\n}")
@@ -50,7 +55,4 @@ val request = Request.Builder()
   .addHeader("Content-Type", "application/json")
   .build()
 val response = client.newCall(request).execute()
-`
-
-Note that using this library is not a requirement, if you can do it in another way. 
-
+```
