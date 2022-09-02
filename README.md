@@ -22,3 +22,35 @@ In particular, the app should:
 - In order to refresh the data, the app should offer:
   - a swipe-2-refresh functionality
   - and a worker that requests the resources from above every 60 minutes
+
+### Hints
+You can use the curl library to authenticate, for example: 
+
+`curl --request POST \
+  --url https://api.baubuddy.de/index.php/login \
+  --header 'Authorization: Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz' \
+  --header 'Content-Type: application/json' \
+  --data '{
+        "username":"365",
+        "password":"1"
+}'`
+
+The response will contain a json object, having the access token in json["oauth"]["access_token"]. For all subsequent calls this has to be added to the headers as Authorization: Bearer {access_token}.
+
+E.g.:
+
+`
+val client = OkHttpClient()
+val mediaType = MediaType.parse("application/json")
+val body = RequestBody.create(mediaType, "{\n        \"username\":\"365\",\n        \"password\":\"1\"\n}")
+val request = Request.Builder()
+  .url("https://api.baubuddy.de/index.php/login")
+  .post(body)
+  .addHeader("Authorization", "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz")
+  .addHeader("Content-Type", "application/json")
+  .build()
+val response = client.newCall(request).execute()
+`
+
+Note that using this library is not a requirement, if you can do it in another way. 
+
