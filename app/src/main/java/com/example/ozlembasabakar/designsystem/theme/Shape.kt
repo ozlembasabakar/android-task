@@ -8,10 +8,16 @@ val Shapes = Shapes(
     small = RoundedCornerShape(8.dp),
 )
 
-val ItemCardListHorizontalPadding = 8.dp
+val ItemsScreenHorizontalPadding = 8.dp
+
 val ItemCardListVerticalPadding = 8.dp
 val ItemCardListVerticalArrangementPadding = 8.dp
-val ItemCardListSpacerHeight = 40.dp
+val ItemCardListSpacerHeight = 50.dp
 
 val ItemCardPadding = 8.dp
 val ItemCardVerticalArrangementPadding = 4.dp
+
+val SearchBarBorder = 1.dp
+val SearchBarShadowElevation = 2.dp
+val SearchBarIconPadding = 16.dp
+const val SearchBarTextColorAlpha = .5f
