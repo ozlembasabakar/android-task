@@ -25,8 +25,9 @@ import com.example.ozlembasabakar.designsystem.theme.ItemsScreenHorizontalPaddin
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemsScreen() {
+
     val itemsScreenViewModel: ItemsScreenViewModel = hiltViewModel()
-    val itemsState by itemsScreenViewModel.items.collectAsStateWithLifecycle()
+    val searchResults by itemsScreenViewModel.searchResults.collectAsStateWithLifecycle()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surface,
@@ -43,11 +44,11 @@ fun ItemsScreen() {
                         .fillMaxWidth()
                 )
                 SearchBar(
-                    value = "searchText",
-                    onValueChange = {}
+                    value = itemsScreenViewModel.searchQuery,
+                    onValueChange = { itemsScreenViewModel.onSearchQueryChange(it) }
                 )
                 ItemCardList(
-                    items = itemsState.items
+                    items = searchResults
                 )
             }
         }
