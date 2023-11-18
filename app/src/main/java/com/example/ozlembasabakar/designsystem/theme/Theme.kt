@@ -1,4 +1,4 @@
-package com.example.ozlembasabakar.ui.theme
+package com.example.ozlembasabakar.designsystem.theme
 
 import android.app.Activity
 import android.os.Build

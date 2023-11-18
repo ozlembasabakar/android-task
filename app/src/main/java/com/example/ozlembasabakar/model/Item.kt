@@ -1,4 +1,4 @@
-package com.example.ozlembasabakar
+package com.example.ozlembasabakar.model
 
 import androidx.compose.ui.graphics.Color
 
