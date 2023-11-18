@@ -8,13 +8,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 import com.example.ozlembasabakar.designsystem.components.ItemCardList
-import com.example.ozlembasabakar.model.Item
 import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
+import com.example.ozlembasabakar.model.Item
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(
+            window,
+            false
+        )
+
         setContent {
             OzlemBasabakarTheme {
                 // A surface container using the 'background' color from the theme

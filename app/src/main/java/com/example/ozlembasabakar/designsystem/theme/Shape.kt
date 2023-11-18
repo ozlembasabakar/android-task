@@ -11,6 +11,7 @@ val Shapes = Shapes(
 val ItemCardListHorizontalPadding = 8.dp
 val ItemCardListVerticalPadding = 8.dp
 val ItemCardListVerticalArrangementPadding = 8.dp
+val ItemCardListSpacerHeight = 40.dp
 
 val ItemCardPadding = 8.dp
 val ItemCardVerticalArrangementPadding = 4.dp
