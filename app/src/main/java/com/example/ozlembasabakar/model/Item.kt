@@ -1,11 +1,13 @@
 package com.example.ozlembasabakar.model
 
-import androidx.compose.ui.graphics.Color
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-
+@Entity(tableName = "items")
 data class Item(
-    val title: String,
-    val task: String,
-    val description: String,
-    val colorCode: Color,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val title: String = "",
+    val task: String = "",
+    val description: String = "",
+    val colorCode: Int = 0,
 )
