@@ -2,13 +2,8 @@ package com.example.ozlembasabakar.data
 
 import com.example.ozlembasabakar.model.Item
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class ItemRepository @Inject constructor(
-    private val localDatasource: LocalDatasource,
-) {
-
-    fun getAllItem(): Flow<List<Item>> {
-        return localDatasource.items
-    }
+interface ItemRepository {
+    fun getAllItems(): Flow<List<Item>>
+    suspend fun addItems(item: Item)
 }
