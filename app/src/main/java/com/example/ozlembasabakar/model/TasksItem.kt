@@ -1,9 +1,9 @@
 package com.example.ozlembasabakar.model
 
-import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
-@Entity(tableName = "tasks")
+@Serializable
 data class TasksItem(
     @PrimaryKey val BusinessUnitKey: String,
     val businessUnit: String?,
@@ -16,5 +16,5 @@ data class TasksItem(
     val task: String?,
     val title: String?,
     val wageType: String?,
-    val workingTime: String?
+    val workingTime: String?,
 )

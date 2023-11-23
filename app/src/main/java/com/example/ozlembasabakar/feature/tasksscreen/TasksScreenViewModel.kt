@@ -11,6 +11,7 @@ import com.example.ozlembasabakar.data.LocalDatasource
 import com.example.ozlembasabakar.data.TaskRepository
 import com.example.ozlembasabakar.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -24,7 +25,7 @@ class TasksScreenViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             taskRepository.addTask(
                 Task(
                     id = 0,
@@ -34,7 +35,9 @@ class TasksScreenViewModel @Inject constructor(
                     colorCode = "Color.LightGray"
                 )
             )
-            Log.d("ozlemwashere", "${taskRepository.getAllTask()}")
+            val result = taskRepository.getAllTaskItem().first()
+            Log.d("ozlemwashere", "$result")
+            Log.d("ozlemwashere", "colorCode: ${result.colorCode}")
         }
     }
 

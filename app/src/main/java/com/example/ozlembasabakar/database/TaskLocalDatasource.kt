@@ -5,7 +5,7 @@ import com.example.ozlembasabakar.model.Task
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ItemLocalDatasource @Inject constructor(
+class TaskLocalDatasource @Inject constructor(
     private val taskDao: TaskDao,
 ) {
 
