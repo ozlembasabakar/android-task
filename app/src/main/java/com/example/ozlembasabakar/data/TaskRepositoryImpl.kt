@@ -4,7 +4,6 @@ import com.example.ozlembasabakar.database.TaskLocalDatasource
 import com.example.ozlembasabakar.model.Task
 import com.example.ozlembasabakar.model.TasksItem
 import com.example.ozlembasabakar.network.TaskRemoteDataSource
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -13,12 +12,17 @@ class TaskRepositoryImpl @Inject constructor(
     private val taskRemoteDataSource: TaskRemoteDataSource,
 ) : TaskRepository {
 
-    override fun getAllTask(): Flow<List<Task>> {
-        return taskLocalDatasource.getAllTask()
-    }
-
-    override suspend fun addTask(task: Task) {
-        return taskLocalDatasource.addTask(task)
+    override suspend fun insertTaskList() {
+        val response = taskRemoteDataSource.getAllTaskItem().take((0..30).random()).map{
+            Task(
+                id = it.description?.length.toString(),
+                title = it.title.toString(),
+                task = it.task.toString(),
+                description = it.description.toString(),
+                colorCode = it.colorCode.toString()
+            )
+        }
+        taskLocalDatasource.insertTaskList(response as ArrayList<Task>)
     }
 
     override suspend fun getAllTaskItem(): ArrayList<TasksItem> {

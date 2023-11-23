@@ -26,17 +26,10 @@ class TasksScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            taskRepository.addTask(
-                Task(
-                    id = 0,
-                    title = "Title",
-                    task = "Task",
-                    description = "Description",
-                    colorCode = "Color.LightGray"
-                )
-            )
+            taskRepository.insertTaskList()
+
             val result = taskRepository.getAllTaskItem().first()
-            Log.d("ozlemwashere", "$result")
+            Log.d("ozlemwashere", "result: $result")
             Log.d("ozlemwashere", "colorCode: ${result.colorCode}")
         }
     }
