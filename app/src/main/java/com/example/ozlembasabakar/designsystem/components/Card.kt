@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.core.graphics.toColorInt
 import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
 import com.example.ozlembasabakar.designsystem.theme.Shapes
 import com.example.ozlembasabakar.designsystem.theme.TaskCardPadding
@@ -51,7 +52,7 @@ fun TaskCard(task: Task) {
         firstText = task.title,
         secondText = task.task,
         thirdText = task.description,
-        background = Color.LightGray,
+        background = Color("#B00020".toColorInt()), //Color(task.colorCode.toColorInt())
         clip = Shapes.small,
         padding = TaskCardPadding,
         verticalArrangementPadding = TaskCardVerticalArrangementPadding
