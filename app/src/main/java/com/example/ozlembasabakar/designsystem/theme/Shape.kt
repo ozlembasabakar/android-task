@@ -8,14 +8,14 @@ val Shapes = Shapes(
     small = RoundedCornerShape(8.dp),
 )
 
-val ItemsScreenHorizontalPadding = 8.dp
+val TasksScreenHorizontalPadding = 8.dp
 
-val ItemCardListVerticalPadding = 8.dp
-val ItemCardListVerticalArrangementPadding = 8.dp
-val ItemCardListSpacerHeight = 50.dp
+val TaskCardListVerticalPadding = 8.dp
+val TaskCardListVerticalArrangementPadding = 8.dp
+val TaskCardListSpacerHeight = 50.dp
 
-val ItemCardPadding = 8.dp
-val ItemCardVerticalArrangementPadding = 4.dp
+val TaskCardPadding = 8.dp
+val TaskCardVerticalArrangementPadding = 4.dp
 
 val SearchBarBorder = 1.dp
 val SearchBarShadowElevation = 2.dp

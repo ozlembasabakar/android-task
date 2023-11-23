@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
-import com.example.ozlembasabakar.feature.itemsscreen.ItemsScreen
+import com.example.ozlembasabakar.feature.tasksscreen.TasksScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             OzlemBasabakarTheme {
-                ItemsScreen()
+                TasksScreen()
             }
         }
     }

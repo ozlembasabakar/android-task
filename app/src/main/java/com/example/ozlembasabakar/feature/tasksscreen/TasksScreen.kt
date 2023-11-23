@@ -1,4 +1,4 @@
-package com.example.ozlembasabakar.feature.itemsscreen
+package com.example.ozlembasabakar.feature.tasksscreen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -16,18 +16,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.ozlembasabakar.designsystem.components.ItemCardList
 import com.example.ozlembasabakar.designsystem.components.SearchBar
-import com.example.ozlembasabakar.designsystem.theme.ItemCardListSpacerHeight
-import com.example.ozlembasabakar.designsystem.theme.ItemsScreenHorizontalPadding
+import com.example.ozlembasabakar.designsystem.components.TaskCardList
+import com.example.ozlembasabakar.designsystem.theme.TaskCardListSpacerHeight
+import com.example.ozlembasabakar.designsystem.theme.TasksScreenHorizontalPadding
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemsScreen() {
+fun TasksScreen() {
 
-    val itemsScreenViewModel: ItemsScreenViewModel = hiltViewModel()
-    val searchResults by itemsScreenViewModel.searchResults.collectAsStateWithLifecycle()
+    val tasksScreenViewModel: TasksScreenViewModel = hiltViewModel()
+    val searchResults by tasksScreenViewModel.searchResults.collectAsStateWithLifecycle()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surface,
@@ -36,19 +36,19 @@ fun ItemsScreen() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = ItemsScreenHorizontalPadding)
+                    .padding(horizontal = TasksScreenHorizontalPadding)
             ) {
                 Spacer(
                     modifier = Modifier
-                        .height(ItemCardListSpacerHeight)
+                        .height(TaskCardListSpacerHeight)
                         .fillMaxWidth()
                 )
                 SearchBar(
-                    value = itemsScreenViewModel.searchQuery,
-                    onValueChange = { itemsScreenViewModel.onSearchQueryChange(it) }
+                    value = tasksScreenViewModel.searchQuery,
+                    onValueChange = { tasksScreenViewModel.onSearchQueryChange(it) }
                 )
-                ItemCardList(
-                    items = searchResults
+                TaskCardList(
+                    taskList = searchResults
                 )
             }
         }
@@ -58,5 +58,5 @@ fun ItemsScreen() {
 @Preview
 @Composable
 fun ItemsScreenPreview() {
-    ItemsScreen()
+    TasksScreen()
 }

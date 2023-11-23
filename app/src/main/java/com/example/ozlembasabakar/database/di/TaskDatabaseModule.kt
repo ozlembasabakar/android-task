@@ -2,7 +2,7 @@ package com.example.ozlembasabakar.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.ozlembasabakar.database.database.ItemDatabase
+import com.example.ozlembasabakar.database.database.TaskDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,14 +12,14 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class ItemDatabaseModule {
+class TaskDatabaseModule {
     @Provides
     @Singleton
-    fun provideItemDatabase(@ApplicationContext appContext: Context): ItemDatabase {
+    fun provideTaskDatabase(@ApplicationContext appContext: Context): TaskDatabase {
         return Room.databaseBuilder(
             appContext,
-            ItemDatabase::class.java,
-            "ItemDatabase",
+            TaskDatabase::class.java,
+            "TaskDatabase",
         )
             .build()
     }

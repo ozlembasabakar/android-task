@@ -7,26 +7,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.ozlembasabakar.designsystem.theme.ItemCardListVerticalArrangementPadding
-import com.example.ozlembasabakar.designsystem.theme.ItemCardListVerticalPadding
 import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
-import com.example.ozlembasabakar.model.Item
+import com.example.ozlembasabakar.designsystem.theme.TaskCardListVerticalArrangementPadding
+import com.example.ozlembasabakar.designsystem.theme.TaskCardListVerticalPadding
+import com.example.ozlembasabakar.model.Task
 
 @Composable
-fun ItemCardList(modifier: Modifier = Modifier, items: List<Item>) {
+fun TaskCardList(modifier: Modifier = Modifier, taskList: List<Task>) {
 
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(
-                vertical = ItemCardListVerticalPadding
+                vertical = TaskCardListVerticalPadding
             ),
-        verticalArrangement = Arrangement.spacedBy(ItemCardListVerticalArrangementPadding)
+        verticalArrangement = Arrangement.spacedBy(TaskCardListVerticalArrangementPadding)
     ) {
-        items(items) { item ->
-            ItemCard(item)
+        items(taskList) { task ->
+            TaskCard(task)
         }
     }
 }
@@ -37,26 +36,15 @@ fun ItemCardList(modifier: Modifier = Modifier, items: List<Item>) {
 fun GreetingPreview() {
     OzlemBasabakarTheme {
 
-        val items = listOf<Item>(
-            Item(
+        val tasks = listOf<Task>(
+            Task(
+                0,
                 "I am a the first title",
                 "I am the first task",
                 "I am the first description",
-                Color.Cyan
-            ),
-            Item(
-                "I am the second title",
-                "I am the second task",
-                "I am the second description",
-                Color.Green
-            ),
-            Item(
-                "I am a the third title",
-                "I am the third task",
-                "I am the third description",
-                Color.Magenta
-            ),
+                "Color.Cyan"
+            )
         )
-        ItemCardList(Modifier, items)
+        TaskCardList(Modifier, tasks)
     }
 }

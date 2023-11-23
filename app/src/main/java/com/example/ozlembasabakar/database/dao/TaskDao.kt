@@ -4,16 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.ozlembasabakar.model.Item
+import com.example.ozlembasabakar.model.Task
 import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface ItemDao {
+interface TaskDao {
 
-    @Query("SELECT * FROM items")
-    fun getAllItems(): Flow<List<Item>>
+    @Query("SELECT * FROM tasks")
+    fun getAllTask(): Flow<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addItems(item: Item)
+    suspend fun addTask(task: Task)
 }

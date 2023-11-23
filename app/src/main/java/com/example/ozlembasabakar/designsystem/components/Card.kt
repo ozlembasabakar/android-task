@@ -14,11 +14,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import com.example.ozlembasabakar.designsystem.theme.ItemCardPadding
-import com.example.ozlembasabakar.designsystem.theme.ItemCardVerticalArrangementPadding
 import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
 import com.example.ozlembasabakar.designsystem.theme.Shapes
-import com.example.ozlembasabakar.model.Item
+import com.example.ozlembasabakar.designsystem.theme.TaskCardPadding
+import com.example.ozlembasabakar.designsystem.theme.TaskCardVerticalArrangementPadding
+import com.example.ozlembasabakar.model.Task
 
 @Composable
 fun Card(
@@ -46,29 +46,30 @@ fun Card(
 }
 
 @Composable
-fun ItemCard(item: Item) {
+fun TaskCard(task: Task) {
     Card(
-        firstText = item.title,
-        secondText = item.task,
-        thirdText = item.description,
-        background = item.colorCode,
+        firstText = task.title,
+        secondText = task.task,
+        thirdText = task.description,
+        background = Color.LightGray,
         clip = Shapes.small,
-        padding = ItemCardPadding,
-        verticalArrangementPadding = ItemCardVerticalArrangementPadding
+        padding = TaskCardPadding,
+        verticalArrangementPadding = TaskCardVerticalArrangementPadding
     )
 }
 
 @Preview
 @Composable
-fun ItemCardPreview() {
+fun TaskCardPreview() {
     OzlemBasabakarTheme {
-        val item = Item(
+        val task = Task(
+            0,
             "I am a title",
             "I am a task",
             "I am a description",
-            Color.Cyan
+            "Color.Cyan"
         )
 
-        ItemCard(item = item)
+        TaskCard(task = task)
     }
 }
