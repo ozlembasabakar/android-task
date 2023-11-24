@@ -15,5 +15,5 @@ interface TaskDao {
     fun getAllTask(): Flow<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTaskList(task: ArrayList<Task>)
+    suspend fun insertTaskList(task: List<Task>)
 }

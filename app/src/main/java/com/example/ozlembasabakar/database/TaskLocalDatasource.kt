@@ -13,7 +13,7 @@ class TaskLocalDatasource @Inject constructor(
         return taskDao.getAllTask()
     }
 
-    suspend fun insertTaskList(task: ArrayList<Task>) {
+    suspend fun insertTaskList(task: List<Task>) {
         taskDao.insertTaskList(task)
     }
 }

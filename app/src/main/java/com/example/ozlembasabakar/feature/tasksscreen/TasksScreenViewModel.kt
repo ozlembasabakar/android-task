@@ -1,13 +1,11 @@
 package com.example.ozlembasabakar.feature.tasksscreen
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ozlembasabakar.data.LocalDatasource
 import com.example.ozlembasabakar.data.TaskRepository
 import com.example.ozlembasabakar.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,9 +26,9 @@ class TasksScreenViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             taskRepository.insertTaskList()
 
-            val result = taskRepository.getAllTaskItem().first()
-            Log.d("ozlemwashere", "result: $result")
-            Log.d("ozlemwashere", "colorCode: ${result.colorCode}")
+            //Log.d("ozlemwashere", taskRepository.getAllTaskItem().toString())
+            //Log.d("ozlemwashere", "result: $result")
+            //Log.d("ozlemwashere", "colorCode: ${result.first()}")
         }
     }
 
@@ -39,7 +37,7 @@ class TasksScreenViewModel @Inject constructor(
 
     val searchResults: StateFlow<List<Task>> =
         snapshotFlow { searchQuery }
-            .combine(LocalDatasource().tasks) { searchQuery, tasks ->
+            .combine(taskRepository.getAllTaskFromDatabase()) { searchQuery, tasks ->
                 when {
                     searchQuery.isNotEmpty() -> tasks.filter { task ->
                         task.title.contains(searchQuery, ignoreCase = true) ||
