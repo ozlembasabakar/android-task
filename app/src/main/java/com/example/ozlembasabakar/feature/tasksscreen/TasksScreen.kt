@@ -11,52 +11,52 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.ozlembasabakar.designsystem.components.SearchBar
 import com.example.ozlembasabakar.designsystem.components.TaskCardList
 import com.example.ozlembasabakar.designsystem.theme.TaskCardListSpacerHeight
 import com.example.ozlembasabakar.designsystem.theme.TasksScreenHorizontalPadding
+import com.example.ozlembasabakar.model.Task
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TasksScreen() {
-
-    val tasksScreenViewModel: TasksScreenViewModel = hiltViewModel()
-    val searchResults by tasksScreenViewModel.searchResults.collectAsStateWithLifecycle()
-
+fun TasksScreen(
+    onValueChange: (String) -> Unit,
+    value: String,
+    searchResults: List<Task>,
+) {
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.surface,
-        content =
-        {
-            Column(
+        containerColor = MaterialTheme.colorScheme.surface
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = TasksScreenHorizontalPadding)
+        ) {
+            Spacer(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = TasksScreenHorizontalPadding)
-            ) {
-                Spacer(
-                    modifier = Modifier
-                        .height(TaskCardListSpacerHeight)
-                        .fillMaxWidth()
-                )
-                SearchBar(
-                    value = tasksScreenViewModel.searchQuery,
-                    onValueChange = { tasksScreenViewModel.onSearchQueryChange(it) }
-                )
-                TaskCardList(
-                    taskList = searchResults
-                )
-            }
+                    .height(TaskCardListSpacerHeight)
+                    .fillMaxWidth()
+            )
+            SearchBar(
+                value = value,
+                onValueChange = { onValueChange(it) }
+            )
+            TaskCardList(
+                taskList = searchResults
+            )
         }
-    )
+    }
 }
 
 @Preview
 @Composable
 fun ItemsScreenPreview() {
-    TasksScreen()
+    TasksScreen(
+        {},
+        "",
+        listOf()
+    )
 }
