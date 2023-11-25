@@ -38,7 +38,7 @@ fun GreetingPreview() {
 
         val tasks = listOf<Task>(
             Task(
-                0,
+                "0",
                 "I am a the first title",
                 "I am the first task",
                 "I am the first description",

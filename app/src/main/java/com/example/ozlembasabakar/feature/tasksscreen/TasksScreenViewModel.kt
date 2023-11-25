@@ -25,10 +25,6 @@ class TasksScreenViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             taskRepository.insertTaskList()
-
-            //Log.d("ozlemwashere", taskRepository.getAllTaskItem().toString())
-            //Log.d("ozlemwashere", "result: $result")
-            //Log.d("ozlemwashere", "colorCode: ${result.first()}")
         }
     }
 

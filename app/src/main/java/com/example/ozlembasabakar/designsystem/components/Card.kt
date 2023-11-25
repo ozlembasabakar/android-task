@@ -52,7 +52,7 @@ fun TaskCard(task: Task) {
         firstText = task.title,
         secondText = task.task,
         thirdText = task.description,
-        background = Color("#B00020".toColorInt()), //Color(task.colorCode.toColorInt())
+        background = Color(task.colorCode.toColorInt()), //Color("#B00020".toColorInt()),
         clip = Shapes.small,
         padding = TaskCardPadding,
         verticalArrangementPadding = TaskCardVerticalArrangementPadding
@@ -64,7 +64,7 @@ fun TaskCard(task: Task) {
 fun TaskCardPreview() {
     OzlemBasabakarTheme {
         val task = Task(
-            0,
+            "0",
             "I am a title",
             "I am a task",
             "I am a description",

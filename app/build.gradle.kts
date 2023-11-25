@@ -30,6 +30,31 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"https://api.baubuddy.de/\"")
+            buildConfigField(
+                "String",
+                "AUTHORIZATION",
+                "\"Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz\""
+            )
+            buildConfigField("String", "username", "\"365\"")
+            buildConfigField("String", "password", "\"1\"")
+        }
+
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "\"https://api.baubuddy.de/\"")
+            buildConfigField(
+                "String",
+                "AUTHORIZATION",
+                "\"Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz\""
+            )
+            buildConfigField("String", "username", "\"365\"")
+            buildConfigField("String", "password", "\"1\"")
         }
     }
     compileOptions {
@@ -41,6 +66,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"

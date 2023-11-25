@@ -1,5 +1,6 @@
 package com.example.ozlembasabakar.network
 
+import com.example.ozlembasabakar.BuildConfig
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -19,14 +20,12 @@ object NetworkModule {
     fun provideRetrofit(): Retrofit.Builder {
 
         val gson = GsonBuilder().create()
-        val headerInterceptor = HeaderInterceptor()
 
         val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
-            .addInterceptor(headerInterceptor)
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://api.baubuddy.de/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(httpClient.build())
     }
 
