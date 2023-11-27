@@ -30,9 +30,10 @@ fun Card(
     clip: CornerBasedShape,
     padding: Dp,
     verticalArrangementPadding: Dp,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .clip(clip)
@@ -52,7 +53,7 @@ fun TaskCard(task: Task) {
         firstText = task.title,
         secondText = task.task,
         thirdText = task.description,
-        background = Color(task.colorCode.toColorInt()), //Color("#B00020".toColorInt()),
+        background = if (task.colorCode.isNotEmpty() || task.colorCode.isNotBlank()) Color(task.colorCode.toColorInt()) else Color.Transparent,
         clip = Shapes.small,
         padding = TaskCardPadding,
         verticalArrangementPadding = TaskCardVerticalArrangementPadding
