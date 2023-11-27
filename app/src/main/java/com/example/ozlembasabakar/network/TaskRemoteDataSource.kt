@@ -14,7 +14,7 @@ class TaskRemoteDataSource @Inject constructor(
         return retrofitNetworkApi.getAllTaskItem(getAuthenticationCodeToGetAllTask())
     }
 
-    suspend fun getAccessToken(raw: JsonObject): Login {
+    private suspend fun getAccessToken(raw: JsonObject): Login {
         return retrofitNetworkApi.getAccessToken(raw)
     }
 
