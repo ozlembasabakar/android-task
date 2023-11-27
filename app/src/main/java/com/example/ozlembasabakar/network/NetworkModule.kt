@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -22,6 +23,8 @@ object NetworkModule {
         val gson = GsonBuilder().create()
 
         val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
+            .writeTimeout(60, TimeUnit.MINUTES)
+            .readTimeout(60, TimeUnit.MINUTES)
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
