@@ -18,6 +18,7 @@ fun NavHost() {
 
     val tasksScreenViewModel: TasksScreenViewModel = hiltViewModel()
     val searchResults by tasksScreenViewModel.searchResults.collectAsStateWithLifecycle()
+    val isRefreshing by tasksScreenViewModel.isRefreshing.collectAsStateWithLifecycle()
 
     NavHost(
         modifier = Modifier,
@@ -30,7 +31,11 @@ fun NavHost() {
                 onValueChange = {
                     tasksScreenViewModel.onSearchQueryChange(it)
                 },
-                searchResults = searchResults
+                searchResults = searchResults,
+                isRefreshing = isRefreshing,
+                onRefresh = {
+                    tasksScreenViewModel.insertTaskList()
+                },
             )
         }
     }

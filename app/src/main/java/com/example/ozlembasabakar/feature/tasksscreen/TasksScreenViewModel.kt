@@ -1,5 +1,6 @@
 package com.example.ozlembasabakar.feature.tasksscreen
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,8 +11,10 @@ import com.example.ozlembasabakar.data.TaskRepository
 import com.example.ozlembasabakar.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -22,10 +25,11 @@ class TasksScreenViewModel @Inject constructor(
     private val taskRepository: TaskRepository,
 ) : ViewModel() {
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
+
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            taskRepository.insertTaskList()
-        }
+        insertTaskList()
     }
 
     var searchQuery by mutableStateOf("")
@@ -51,5 +55,17 @@ class TasksScreenViewModel @Inject constructor(
 
     fun onSearchQueryChange(newQuery: String) {
         searchQuery = newQuery
+    }
+
+    fun insertTaskList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _isRefreshing.value = true
+            taskRepository.insertTaskList().onSuccess {
+                Log.d("ozlem", "insertNewPostsInfoByCategory succeed")
+            }.onFailure {
+                Log.d("ozlem", "insertNewPostsInfoByCategory: $it")
+            }
+            _isRefreshing.value = false
+        }
     }
 }
