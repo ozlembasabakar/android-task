@@ -19,6 +19,7 @@ import com.example.ozlembasabakar.designsystem.theme.OzlemBasabakarTheme
 import com.example.ozlembasabakar.designsystem.theme.Shapes
 import com.example.ozlembasabakar.designsystem.theme.TaskCardPadding
 import com.example.ozlembasabakar.designsystem.theme.TaskCardVerticalArrangementPadding
+import com.example.ozlembasabakar.designsystem.theme.Typography
 import com.example.ozlembasabakar.model.Task
 
 @Composable
@@ -41,9 +42,9 @@ fun Card(
             .padding(padding),
         verticalArrangement = Arrangement.spacedBy(verticalArrangementPadding)
     ) {
-        Text(text = firstText)
-        Text(text = secondText)
-        Text(text = thirdText)
+        Text(text = firstText, style = Typography.titleLarge)
+        Text(text = secondText, style = Typography.bodyLarge)
+        Text(text = thirdText, style = Typography.bodyMedium)
     }
 }
 
