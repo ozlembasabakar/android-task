@@ -7,6 +7,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dynamsoft.dbr.BarcodeReader
+import com.dynamsoft.dbr.BarcodeReaderException
+import com.dynamsoft.dbr.TextResult
+import com.dynamsoft.dce.CameraEnhancer
 import com.example.ozlembasabakar.data.TaskRepository
 import com.example.ozlembasabakar.model.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +31,9 @@ class TasksScreenViewModel @Inject constructor(
 
     private val _isRefreshing = MutableStateFlow(false)
     val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
+
+    lateinit var cameraEnhancer: CameraEnhancer
+    lateinit var barcodeReader: BarcodeReader
 
     init {
         insertTaskList()
@@ -66,6 +73,49 @@ class TasksScreenViewModel @Inject constructor(
                 Log.d("ozlem", "insertNewPostsInfoByCategory: $it")
             }
             _isRefreshing.value = false
+        }
+    }
+
+    fun setScanner() {
+        try {
+            initializeLicense()
+            inititializeDynamsoftBarcodeReader()
+        } catch (e: Exception) {
+            Log.d("ozlemwashere", e.message.toString())
+        }
+    }
+
+    private fun initializeLicense() {
+        BarcodeReader.initLicense(
+            "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="
+        ) { isSuccess, error ->
+            if (!isSuccess) {
+                Log.d("ozlemwashere", error.printStackTrace().toString())
+            } else {
+                Log.d("ozlemwashere", "License initialized")
+            }
+        }
+    }
+
+    private fun inititializeDynamsoftBarcodeReader() {
+        try {
+            barcodeReader = BarcodeReader()
+            barcodeReader.setCameraEnhancer(cameraEnhancer)
+        } catch (e: BarcodeReaderException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun startScanning(scanned: (TextResult) -> Unit) {
+        try {
+            barcodeReader.setTextResultListener { id, imageData, textResults ->
+                if (textResults.isNotEmpty()) {
+                    scanned(textResults[0])
+                }
+            }
+            barcodeReader.startScanning()
+        } catch (e: BarcodeReaderException) {
+            e.printStackTrace()
         }
     }
 }
