@@ -18,7 +18,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.ozlembasabakar.feature.barcodescannerscreen.BarcodeScanScreen
+import com.example.ozlembasabakar.designsystem.components.BarcodeScanner
 import com.example.ozlembasabakar.feature.tasksscreen.TasksScreen
 import com.example.ozlembasabakar.feature.tasksscreen.TasksScreenViewModel
 
@@ -52,7 +52,7 @@ fun NavHost() {
             hasCameraPermission = granted
             if (granted) {
                 tasksScreenViewModel.startScanning { result ->
-                    barcodeTextResult = result.barcodeText
+                    barcodeTextResult = result.barcodeFormatString + ": " + result.barcodeText
                 }
                 tasksScreenViewModel.cameraEnhancer.open()
             }
@@ -89,7 +89,7 @@ fun NavHost() {
                 launcher.launch(Manifest.permission.CAMERA)
             }
 
-            BarcodeScanScreen(
+            BarcodeScanner(
                 barcodeTextResult = barcodeTextResult,
                 tasksScreenViewModel = tasksScreenViewModel
             )

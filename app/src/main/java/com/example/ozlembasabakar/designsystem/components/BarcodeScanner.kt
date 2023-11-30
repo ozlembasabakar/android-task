@@ -1,4 +1,4 @@
-package com.example.ozlembasabakar.feature.barcodescannerscreen
+package com.example.ozlembasabakar.designsystem.components
 
 import android.content.Context
 import android.content.ContextWrapper
@@ -11,12 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import com.dynamsoft.dce.CameraEnhancer
 import com.dynamsoft.dce.DCECameraView
-import com.example.ozlembasabakar.designsystem.components.BarcodeText
 import com.example.ozlembasabakar.feature.tasksscreen.TasksScreenViewModel
 
 
 @Composable
-fun BarcodeScanScreen(
+fun BarcodeScanner(
     tasksScreenViewModel: TasksScreenViewModel,
     barcodeTextResult: String,
 ) {
